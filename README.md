@@ -112,7 +112,7 @@ lib/
 
 ## 1. Clone the Repository
 ```bash
-git clone https://github.com/hasidmansoori/workforce_app.git
+git clone https://github.com/hasidmansoori/workforce_management_app.git
 cd workforce_app
 ```
 
