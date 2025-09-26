@@ -73,7 +73,7 @@ The app follows **Clean Architecture** with three main layers:
 - **Repository Implementations** – Concrete implementations that fulfill domain repository contracts.
 
 ---
-
+```text
 # 📁 Project Structure
 
 lib/
@@ -95,7 +95,7 @@ lib/
 │  ├─ websocket_service.dart         # WebSocket communication
 │  └─ location_service.dart          # Geolocation handling
 └─ main.dart                         # App entry point
-
+```
 #🧩 Packages Used
 
 | Package             | Purpose                                 |
