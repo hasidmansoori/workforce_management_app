@@ -77,36 +77,69 @@ The app follows **Clean Architecture** with three main layers:
 # 📁 Project Structure
 
 lib/
-├─ core/                             # Core utilities and helpers
-│  ├─ error/                         # Error handling (e.g., exceptions, failures)
-│  ├─ network/                       # Network utilities and interceptors
-│  └─ utils/                         # General utility functions/helpers
-├─ features/                         # Feature-based modular structure
-│  ├─ auth/                          # Authentication feature
-│  │  ├─ data/                       # Data sources, models, implementations
-│  │  ├─ domain/                     # Entities, repositories, use cases
-│  │  └─ presentation/               # UI, BLoC, widgets
-│  ├─ attendance/                    # Attendance tracking
-│  ├─ tasks/                         # Task management
-│  └─ profile/                       # User profile
-├─ services/                         # Shared services
-│  ├─ api_service.dart               # API client using Dio
-│  ├─ local_storage_service.dart     # Local storage using Hive
-│  ├─ websocket_service.dart         # WebSocket communication
-│  └─ location_service.dart          # Geolocation handling
-└─ main.dart                         # App entry point
-```
-#🧩 Packages Used
+├─ core/                          # Core utilities shared across the app
+│  ├─ error/                      # Error handling (e.g., Failure classes, exceptions)
+│  ├─ network/                    # Network utilities (e.g., NetworkInfo)
+│  └─ utils/                      # General utility/helper functions
+│
+├─ features/                      # Feature-based architecture
+│  ├─ auth/                       # Authentication (login, register, session)
+│  │  ├─ data/                    # Data layer (models, datasources, repository impl)
+│  │  ├─ domain/                  # Business logic layer (entities, repositories, usecases)
+│  │  └─ presentation/            # UI layer (Bloc, pages, widgets for Auth)
+│  │
+│  ├─ attendance/                 # Attendance feature (check-in, check-out, logs)
+│  │  ├─ data/                    # Local datasources, repositories
+│  │  ├─ domain/                  # Entities, repositories
+│  │  └─ presentation/            # Bloc, UI for attendance
+│  │
+│  ├─ tasks/                      # Task management feature
+│  │  ├─ data/                    # Remote datasource (API), repository implementations
+│  │  ├─ domain/                  # Task entities, repository contracts
+│  │  └─ presentation/            # Bloc, UI (TaskPage, Task Widgets)
+│  │
+│  └─ profile/                    # User profile management feature
+│     ├─ data/                    # Profile datasource, model, repository
+│     ├─ domain/                  # Profile entity, repository abstraction
+│     └─ presentation/            # Bloc, UI (ProfilePage, widgets)
+│
+├─ services/                      # Global services available across features
+│  ├─ api_service.dart            # Handles HTTP requests using Dio
+│  ├─ local_storage_service.dart  # Local persistence with Hive/SharedPreferences
+│  ├─ websocket_service.dart      # WebSocket connection & stream handling
+│  └─ location_service.dart       # Location & geolocation utilities
+│
+├─ widgets/                       # Reusable UI components
+│  ├─ custom_button.dart          # Custom styled button widget
+│  ├─ custom_textfield.dart       # Custom styled text input field
+│  ├─ loading_indicator.dart      # Reusable loading spinner widget
+│
+├─ injection_container.dart       # Dependency injection setup (GetIt service locator)
+└─ main.dart                      # Entry point of the Flutter app
 
-| Package             | Purpose                                 |
-| ------------------- | --------------------------------------- |
-| `flutter_bloc`      | State management                        |
-| `get_it`            | Dependency injection                    |
-| `dio`               | HTTP API requests                       |
-| `geolocator`        | Location services                       |
-| `hive`              | Local data storage / offline caching    |
-| `fl_chart`          | Data visualization and analytics charts |
-| `connectivity_plus` | Internet/network status detection       |
+```
+
+## 📦 Packages Used
+
+| Package              | Purpose                                                                 |
+|----------------------|-------------------------------------------------------------------------|
+| cupertino_icons      | iOS-style icons for Flutter apps                                        |
+| flutter_bloc         | State management using the BLoC (Business Logic Component) pattern      |
+| get_it               | Dependency injection & service locator                                 |
+| equatable            | Simplifies equality checks in entities and states                      |
+| dio                  | Powerful HTTP client for API requests                                  |
+| connectivity_plus    | Monitor network status and connectivity                                |
+| geolocator           | Access GPS location for attendance tracking                           |
+| permission_handler   | Request and manage runtime permissions (location, storage, etc.)       |
+| hive                 | Lightweight NoSQL database for local storage                           |
+| hive_flutter         | Hive integration with Flutter                                          |
+| shared_preferences   | Store small key-value persistent data (e.g., tokens, settings)         |
+| web_socket_channel   | WebSocket client for real-time updates                                 |
+| firebase_messaging   | Push notifications using Firebase Cloud Messaging                      |
+| firebase_core        | Core Firebase services initialization                                  |
+| fl_chart             | Beautiful charts for analytics and data visualization                  |
+| dartz                | Functional programming utilities (Either, Option, etc.)                |
+
 
 #🚀 Setup & Installation
 
